@@ -1,0 +1,13 @@
+
+FROM alpine:latest
+
+# Copy the hw.c file (present in the build dir) into our image
+COPY hw.c /hw.c
+COPY compileAndRun.hw.sh /compileAndRun.hw.sh
+
+# Run this command as part of building the image
+RUN apk -U add build-base gcc abuild binutils binutils-doc gcc-doc
+RUN chmod 755 compileAndRun.hw.sh
+
+# Run this command by default
+CMD ./compileAndRun.hw.sh
